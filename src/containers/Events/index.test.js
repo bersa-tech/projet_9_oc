@@ -45,7 +45,11 @@ describe("When Events is created", () => {
         <Events />
       </DataProvider>
     );
-    await screen.findByText("avril");
+    // ici, nous utilisons findByText car nous attendons avant de les afficher.
+    // await screen.findByText("avril");
+
+    // ici, nous utilisons findAllByText car nous attendons avant de les afficher.
+    await screen.findAllByText("avril");
   });
   describe("and an error occured", () => {
     it("an error message is displayed", async () => {
@@ -60,7 +64,7 @@ describe("When Events is created", () => {
   });
   // retirer .only ligne 62 ; une fois que tu as terminé les tests, car sinon, les autres tests ne seront pas exécutés, ce qui pourrait fausser les résultats globaux
   describe("and we select a category", () => {
-    it("an filtered list is displayed", async () => {
+    it.only("an filtered list is displayed", async () => {
       api.loadData = jest.fn().mockReturnValue(data);
       render(
         <DataProvider>

@@ -1,4 +1,5 @@
 /* eslint-disable no-return-assign */
+// aout du h1 car inexistant sur le site
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
 
@@ -6,7 +7,9 @@ import "./style.scss";
 
 const Menu = () => (
   <nav>
-    <Logo />
+    <h1>
+      <Logo />
+    </h1>
     <ul>
       <li>
         <a href="#nos-services">Nos services</a>
@@ -18,7 +21,10 @@ const Menu = () => (
         <a href="#notre-equipe">Notre équipe</a>
       </li>
     </ul>
-    <Button title="contact" onClick={() => (window.document.location.hash = "#contact")}>
+    <Button
+      title="contact"
+      onClick={() => (window.document.location.hash = "#contact")}
+    >
       Contact
     </Button>
   </nav>
