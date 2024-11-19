@@ -14,12 +14,12 @@ const Select = ({
   label,
   type = "normal",
 }) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null); // ici on initialise la valeur à null
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
     onChange(newValue); // Ajout de newValue : sans le newValue, le parent ne saurait pas quelle option a été choisie
     setValue(newValue);
-    setCollapsed(newValue);
+    setCollapsed(true); // ici on ferme le select 1 fois que l'on a choisi une option
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
