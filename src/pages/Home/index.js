@@ -10,6 +10,8 @@ import Logo from "../../components/Logo";
 import Icon from "../../components/Icon";
 import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
+import ModalEvent from "../../containers/ModalEvent"; // ajout de la modal event
+
 import { useData } from "../../contexts/DataContext";
 
 // stock useDate dans la un tableau data . Déstructuration
@@ -19,6 +21,8 @@ import { useData } from "../../contexts/DataContext";
 // donc la variable last affichira toujours l'event le plus récent de useData
 // également, ajout des id au sections pour l'ancrage dans le menu
 // ajout des alt, aria label, et lien.
+// ajout modalevent pour l'eventcard du footer
+// reprise de la structure de evenList ici pour la modal de evenCard
 
 const Page = () => {
   const { data } = useData();
@@ -137,18 +141,23 @@ const Page = () => {
         </div>
       </main>
       <footer className="row">
-        <div className="col presta">
-          <h3>Notre derniére prestation</h3>
-          {last && (
-            <EventCard
-              imageSrc={last.cover}
-              title={last.title}
-              date={new Date(last.date)}
-              small
-              label="boom"
-            />
-          )}
-        </div>
+        {last && (
+          <div className="col presta">
+            <h3>Notre dernière prestation</h3>
+            <Modal key={last.id} Content={<ModalEvent event={last} />}>
+              {({ setIsOpened }) => (
+                <EventCard
+                  onClick={() => setIsOpened(true)}
+                  imageSrc={last.cover}
+                  title={last.title}
+                  date={new Date(last.date)}
+                  small
+                  label="boom"
+                />
+              )}
+            </Modal>
+          </div>
+        )}
         <div className="col contact">
           <h3>Contactez-nous</h3>
           <address>45 avenue de la République, 75000 Paris</address>
